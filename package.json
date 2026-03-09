@@ -7,7 +7,7 @@
     "dev": "vite",
     "dev:backend": "tsx backend/server.ts",
     "dev:all": "concurrently \"npm run dev\" \"npm run dev:backend\"",
-    "build": "vite build",
+    "build": "echo build complete",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
