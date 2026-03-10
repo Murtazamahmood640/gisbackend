@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
 import { corsOptions } from './config/cors';
 import { connectDB } from './config/database';
@@ -18,120 +18,123 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Health check
-app.get('/api/health', (req, res) => {
+app.get('/api/health', (req: Request, res: Response) => {
   res.json({ status: 'ok' });
 });
 
 // Routes
-app.post('/api/auth/login', async (req, res) => {
+app.post('/api/auth/login', async (req: Request, res: Response) => {
   await authHandler(
     { ...req, query: { action: 'login' } } as any,
-    res
+    res as any
   );
 });
 
-app.post('/api/auth/register', async (req, res) => {
+app.post('/api/auth/register', async (req: Request, res: Response) => {
   await authHandler(
     { ...req, query: { action: 'register' } } as any,
-    res
+    res as any
   );
 });
 
-app.get('/api/appointments', async (req, res) => {
-  await appointmentsHandler(req as any, res);
+app.get('/api/appointments', async (req: Request, res: Response) => {
+  await appointmentsHandler(req as any, res as any);
 });
 
-app.post('/api/appointments', async (req, res) => {
-  await appointmentsHandler(req as any, res);
+app.post('/api/appointments', async (req: Request, res: Response) => {
+  await appointmentsHandler(req as any, res as any);
 });
 
-app.put('/api/appointments/:id', async (req, res) => {
+app.put('/api/appointments/:id', async (req: Request, res: Response) => {
   await appointmentsHandler(
     { ...req, query: { id: req.params.id } } as any,
-    res
+    res as any
   );
 });
 
-app.delete('/api/appointments/:id', async (req, res) => {
+app.delete('/api/appointments/:id', async (req: Request, res: Response) => {
   await appointmentsHandler(
     { ...req, query: { id: req.params.id } } as any,
-    res
+    res as any
   );
 });
 
 
 // Users routes
-app.get('/api/users', async (req, res) => {
-  await usersHandler(req as any, res);
+app.get('/api/users', async (req: Request, res: Response) => {
+  await usersHandler(req as any, res as any);
 });
 
-app.post('/api/users', async (req, res) => {
-  await usersHandler(req as any, res);
+app.post('/api/users', async (req: Request, res: Response) => {
+  await usersHandler(req as any, res as any);
 });
 
-app.put('/api/users', async (req, res) => {
-  await usersHandler(req as any, res);
+app.put('/api/users', async (req: Request, res: Response) => {
+  await usersHandler(req as any, res as any);
 });
 
-app.delete('/api/users', async (req, res) => {
-  await usersHandler(req as any, res);
+app.delete('/api/users', async (req: Request, res: Response) => {
+  await usersHandler(req as any, res as any);
 });
 
 
-app.post('/api/contact', async (req, res) => {
-  await contactHandler(req as any, res);
+app.post('/api/contact', async (req: Request, res: Response) => {
+  await contactHandler(req as any, res as any);
 });
 
-app.get('/api/contact', async (req, res) => {
-  await contactHandler(req as any, res);
+app.get('/api/contact', async (req: Request, res: Response) => {
+  await contactHandler(req as any, res as any);
 });
 
-app.put('/api/contact', async (req, res) => {
-  await contactHandler(req as any, res);
+app.put('/api/contact', async (req: Request, res: Response) => {
+  await contactHandler(req as any, res as any);
 });
 
-app.delete('/api/contact', async (req, res) => {
-  await contactHandler(req as any, res);
+app.delete('/api/contact', async (req: Request, res: Response) => {
+  await contactHandler(req as any, res as any);
+});
+
+// Feedback routes
+app.get('/api/feedback', async (req: Request, res: Response) => {
+  await feedbackHandler(req as any, res as any);
+});
+
+app.post('/api/feedback', async (req: Request, res: Response) => {
+  await feedbackHandler(req as any, res as any);
+});
+
+app.put('/api/feedback', async (req: Request, res: Response) => {
+  await feedbackHandler(req as any, res as any);
+});
+
+app.delete('/api/feedback', async (req: Request, res: Response) => {
+  await feedbackHandler(req as any, res as any);
 });
 
 // Coupons routes
-app.get('/api/feedback', async (req, res) => {
-  await feedbackHandler(req as any, res);
+app.get('/api/coupons', async (req: Request, res: Response) => {
+  await couponsHandler(req as any, res as any);
 });
 
-app.post('/api/feedback', async (req, res) => {
-  await feedbackHandler(req as any, res);
-});
-app.put('/api/feedback', async (req, res) => {
-  await feedbackHandler(req as any, res);
+app.post('/api/coupons', async (req: Request, res: Response) => {
+  await couponsHandler(req as any, res as any);
 });
 
-app.delete('/api/feedback', async (req, res) => {
-  await feedbackHandler(req as any, res);
-});
-app.get('/api/coupons', async (req, res) => {
-  await couponsHandler(req as any, res);
+app.put('/api/coupons', async (req: Request, res: Response) => {
+  await couponsHandler(req as any, res as any);
 });
 
-app.post('/api/coupons', async (req, res) => {
-  await couponsHandler(req as any, res);
-});
-
-app.put('/api/coupons', async (req, res) => {
-  await couponsHandler(req as any, res);
-});
-
-app.delete('/api/coupons', async (req, res) => {
-  await couponsHandler(req as any, res);
+app.delete('/api/coupons', async (req: Request, res: Response) => {
+  await couponsHandler(req as any, res as any);
 });
 
 // Error handling
 app.use(
   (
     err: any,
-    req: express.Request,
-    res: express.Response,
-    next: express.NextFunction
+    req: Request,
+    res: Response,
+    next: NextFunction
   ) => {
     console.error('Error:', err);
 
@@ -147,7 +150,7 @@ app.use(
 );
 
 // 404 handler
-app.use((req, res) => {
+app.use((req: Request, res: Response) => {
   res.status(404).json({
     success: false,
     message: 'Route not found',
