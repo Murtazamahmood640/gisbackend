@@ -9,7 +9,7 @@
     "start": "tsx server.ts"
   },
   "engines": {
-    "node": "18.x"
+      "node": "24.x"
   },
   "dependencies": {
     "@vercel/node": "^5.6.10",
@@ -27,7 +27,7 @@
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^18.0.0",
+    "@types/node": "^22.0.0",
     "@types/nodemailer": "^6.4.14",
     "tsx": "^4.7.0",
     "typescript": "^5.8.3"
