@@ -1,17 +1,17 @@
 import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
-import { corsOptions } from './config/cors';
-import { connectDB } from './config/database';
+import { corsOptions } from './config/cors.js';
+import { connectDB } from './config/database.js';
 
 // Import route handlers
-import authHandler from './handlers/auth';
-import appointmentsHandler from './handlers/appointments';
-import contactHandler from './handlers/contact';
-import couponsHandler from './handlers/coupons';
-import usersHandler from './handlers/users';
-import feedbackHandler from './handlers/feedback'
-import blogsHandler from './handlers/blogs'
-import uploadHandler from './handlers/upload'
+import authHandler from './handlers/auth.js';
+import appointmentsHandler from './handlers/appointments.js';
+import contactHandler from './handlers/contact.js';
+import couponsHandler from './handlers/coupons.js';
+import usersHandler from './handlers/users.js';
+import feedbackHandler from './handlers/feedback.js'
+import blogsHandler from './handlers/blogs.js'
+import uploadHandler from './handlers/upload.js'
 const app = express();
 
 // Middleware
