@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { uploadToCloudinary } from '../utils/cloudinary.js';
+import { uploadToCloudinary } from '../utils/cloudinary';
 
 export default async function handler(
   req: VercelRequest,
