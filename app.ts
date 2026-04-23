@@ -1,5 +1,7 @@
 import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
+dotenv.config();
 import { corsOptions } from './config/cors';
 import { connectDB } from './config/database';
 
