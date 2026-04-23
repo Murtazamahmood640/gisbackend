@@ -2,6 +2,7 @@
   "name": "gis-backend",
   "version": "1.0.0",
   "description": "GIS Backend API - Deployed on Vercel",
+  "type": "module",
   "main": "api/index.ts",
   "scripts": {
     "dev": "tsx server.ts",
