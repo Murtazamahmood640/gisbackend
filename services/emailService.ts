@@ -55,7 +55,12 @@ export function getBookingConfirmationEmail(booking: {
   basePrice?: number;
   discount?: number;
   coupons?: string;
+  addons?: { name: string; price: number }[];
 }): string {
+  const addonsHtml = booking.addons && booking.addons.length > 0 
+    ? `<p><strong>Addons:</strong> ${booking.addons.map(a => `${a.name} ($${a.price.toFixed(2)})`).join(', ')}</p>`
+    : '';
+
   return `
     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
       <h2>Booking Confirmation</h2>
@@ -67,6 +72,7 @@ export function getBookingConfirmationEmail(booking: {
         <p><strong>Service:</strong> ${booking.serviceType}</p>
         <p><strong>Date:</strong> ${booking.date}</p>
         <p><strong>Time:</strong> ${booking.timeSlot}</p>
+        ${addonsHtml}
         ${booking.basePrice ? `<p><strong>Base Price:</strong> $${booking.basePrice.toFixed(2)}</p>` : ''}
         ${booking.discount ? `<p><strong>Discount:</strong> -$${booking.discount.toFixed(2)}</p>` : ''}
         ${booking.coupons ? `<p><strong>Applied Coupons:</strong> ${booking.coupons}</p>` : ''}
@@ -109,7 +115,12 @@ export function getAdminNotificationEmail(booking: {
   timeSlot: string;
   vehicleName: string;
   totalPrice: number;
+  addons?: { name: string; price: number }[];
 }): string {
+  const addonsHtml = booking.addons && booking.addons.length > 0 
+    ? `<p><strong>Addons:</strong> ${booking.addons.map(a => `${a.name} ($${a.price.toFixed(2)})`).join(', ')}</p>`
+    : '';
+
   return `
     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
       <h2>New Booking Received</h2>
@@ -125,6 +136,7 @@ export function getAdminNotificationEmail(booking: {
         <p><strong>Service:</strong> ${booking.serviceType}</p>
         <p><strong>Date:</strong> ${booking.date}</p>
         <p><strong>Time:</strong> ${booking.timeSlot}</p>
+        ${addonsHtml}
         <p><strong>Total Price:</strong> $${booking.totalPrice.toFixed(2)}</p>
       </div>
     </div>

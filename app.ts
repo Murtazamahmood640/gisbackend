@@ -10,6 +10,8 @@ import contactHandler from './handlers/contact';
 import couponsHandler from './handlers/coupons';
 import usersHandler from './handlers/users';
 import feedbackHandler from './handlers/feedback'
+import blogsHandler from './handlers/blogs'
+import uploadHandler from './handlers/upload'
 const app = express();
 
 // Middleware
@@ -109,6 +111,31 @@ app.put('/api/feedback', async (req: Request, res: Response) => {
 
 app.delete('/api/feedback', async (req: Request, res: Response) => {
   await feedbackHandler(req as any, res as any);
+});
+
+// Blogs routes
+app.get('/api/blogs', async (req: Request, res: Response) => {
+  await blogsHandler(req as any, res as any);
+});
+
+app.get('/api/blogs/:slug', async (req: Request, res: Response) => {
+  await blogsHandler({ ...req, query: { slug: req.params.slug } } as any, res as any);
+});
+
+app.post('/api/blogs', async (req: Request, res: Response) => {
+  await blogsHandler(req as any, res as any);
+});
+
+app.put('/api/blogs/:id', async (req: Request, res: Response) => {
+  await blogsHandler({ ...req, query: { id: req.params.id } } as any, res as any);
+});
+
+app.delete('/api/blogs/:id', async (req: Request, res: Response) => {
+  await blogsHandler({ ...req, query: { id: req.params.id } } as any, res as any);
+});
+
+app.post('/api/upload', async (req: Request, res: Response) => {
+  await uploadHandler(req as any, res as any);
 });
 
 // Coupons routes

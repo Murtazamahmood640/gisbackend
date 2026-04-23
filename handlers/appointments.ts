@@ -83,6 +83,7 @@ export default async function handler(
             basePrice: appointmentToSave.basePrice,
             discount: totalDiscount,
             coupons: couponCodes || 'None',
+            addons: appointmentData.addons,
           } as any),
         });
 
@@ -98,6 +99,7 @@ export default async function handler(
             timeSlot: appointmentData.timeSlot,
             vehicleName: appointmentData.vehicleName,
             totalPrice: finalPrice,
+            addons: appointmentData.addons,
           }),
         });
       } catch (emailError) {

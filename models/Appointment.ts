@@ -6,6 +6,11 @@ export interface CouponDetail {
   discountAmount: number;
 }
 
+export interface AddonDetail {
+  name: string;
+  price: number;
+}
+
 export interface IAppointment extends mongoose.Document {
   fullName: string;
   phone: string;
@@ -21,6 +26,7 @@ export interface IAppointment extends mongoose.Document {
   timeSlot: string;
   promoCode?: string;
   coupons: CouponDetail[];
+  addons: AddonDetail[];
   basePrice: number;
   totalDiscount: number;
   discountApplied: boolean;
@@ -96,6 +102,18 @@ const appointmentSchema = new mongoose.Schema<IAppointment>(
           required: true,
         },
         discountAmount: {
+          type: Number,
+          required: true,
+        },
+      },
+    ],
+    addons: [
+      {
+        name: {
+          type: String,
+          required: true,
+        },
+        price: {
           type: Number,
           required: true,
         },
