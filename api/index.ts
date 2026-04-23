@@ -33,7 +33,9 @@ export default async function handler(req: any, res: any) {
       res.status(500).json({ 
         success: false, 
         message: "Internal Server Error during initialization",
-        error: error instanceof Error ? error.message : "Unknown error"
+        error: error instanceof Error ? error.message : "Unknown error",
+        stack: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined,
+        hint: "Check your MONGODB_URI and Cloudinary environment variables."
       });
     }
   }
