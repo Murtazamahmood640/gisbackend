@@ -26,7 +26,9 @@ export default async function handler(
         });
       }
 
-      const blogs = await Blog.find({ published: true }).sort({ createdAt: -1 });
+      const { all } = req.query;
+      const query = all === 'true' ? {} : { published: true };
+      const blogs = await Blog.find(query).sort({ createdAt: -1 });
       return res.status(200).json({
         success: true,
         data: blogs,
