@@ -44,7 +44,7 @@ export default async function handler(
       try {
         await sendEmail({
           to: feedbackData.email,
-          subject: 'Thank you for your feedback - Luxe Detail Booker',
+          subject: 'Thank you for your feedback - Global Integrated Support',
           html: `
             <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
               <h2>Thank you for your feedback!</h2>
@@ -58,7 +58,7 @@ export default async function handler(
               <p style="margin-top: 30px; color: #666;">
                 Thank you for choosing us!<br>
                 Best regards,<br>
-                Luxe Detail Booker Team
+                Global Integrated Support Team
               </p>
             </div>
           `,

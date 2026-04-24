@@ -15,6 +15,8 @@ import usersHandler from './handlers/users';
 import feedbackHandler from './handlers/feedback'
 import blogsHandler from './handlers/blogs'
 import uploadHandler from './handlers/upload'
+import facebookSyncHandler from './api/feedback/sync-facebook';
+
 const app = express();
 
 // Middleware
@@ -120,7 +122,9 @@ app.put('/api/feedback', async (req: Request, res: Response) => {
 app.delete('/api/feedback', async (req: Request, res: Response) => {
   await feedbackHandler(req as any, res as any);
 });
-
+app.post('/api/feedback/sync-facebook', async (req, res) => {
+  await facebookSyncHandler(req as any, res as any);
+});
 // Blogs routes
 app.get('/api/blogs', async (req: Request, res: Response) => {
   await blogsHandler(req as any, res as any);
