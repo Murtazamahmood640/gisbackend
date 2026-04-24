@@ -1,7 +1,8 @@
 import express, { type Request, type Response, type NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config();
+import path from 'path';
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 import { corsOptions } from './config/cors';
 import { connectDB } from './config/database';
 
@@ -18,8 +19,8 @@ const app = express();
 
 // Middleware
 app.use(cors(corsOptions));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: 52428800 }));
+app.use(express.urlencoded({ extended: true, limit: 52428800 }));
 
 // Health check
 app.get('/api/health', (req: Request, res: Response) => {

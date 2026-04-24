@@ -1,8 +1,9 @@
 import app from './app';
 import { connectDB } from './config/database';
 import dotenv from 'dotenv';
+import path from 'path';
 
-dotenv.config();
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 const PORT = process.env.PORT || 3000;
 
