@@ -15,6 +15,8 @@ const allowedOrigins = [
   // Production
   'https://gis.tintsshine.com',
   'https://tintsshine.com',
+  'https://globalintegratedsupport.com',
+  'https://www.globalintegratedsupport.com',
   process.env.FRONTEND_URL,
 ].filter(Boolean) as string[];
 
