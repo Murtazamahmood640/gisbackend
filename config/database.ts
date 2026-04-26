@@ -41,6 +41,9 @@ export async function connectDB() {
         return mongoose;
       })
       .catch((err) => {
+        // Clear the cached promise so next request retries connection
+        cached.promise = null;
+        cached.conn = null;
         console.error('MongoDB connection error:', err);
         throw err;
       });

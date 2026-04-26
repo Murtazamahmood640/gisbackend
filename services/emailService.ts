@@ -1,4 +1,10 @@
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Load environment variables
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
 
 // Initialize Stackmail transporter
 const transporter = nodemailer.createTransport({
@@ -110,6 +116,7 @@ export function getAdminNotificationEmail(booking: {
   fullName: string;
   phone: string;
   email: string;
+  address?: string;
   serviceType: string;
   date: string;
   timeSlot: string;
@@ -130,6 +137,7 @@ export function getAdminNotificationEmail(booking: {
         <p><strong>Name:</strong> ${booking.fullName}</p>
         <p><strong>Email:</strong> ${booking.email}</p>
         <p><strong>Phone:</strong> ${booking.phone}</p>
+        ${booking.address ? `<p><strong>Address:</strong> ${booking.address}</p>` : ''}
         
         <h3 style="margin-top: 20px;">Booking Details</h3>
         <p><strong>Vehicle:</strong> ${booking.vehicleName}</p>

@@ -28,14 +28,14 @@ export default async function handler(req: any, res: any) {
     // Directly use the express app as the handler
     return app(req, res);
   } catch (error) {
+    // Reset connected flag so next request retries the DB connection
+    connected = false;
     console.error("Vercel handler error:", error);
     if (!res.headersSent) {
       res.status(500).json({ 
         success: false, 
         message: "Internal Server Error during initialization",
         error: error instanceof Error ? error.message : "Unknown error",
-        stack: process.env.NODE_ENV === 'development' ? (error instanceof Error ? error.stack : undefined) : undefined,
-        hint: "Check your MONGODB_URI and Cloudinary environment variables."
       });
     }
   }

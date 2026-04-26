@@ -94,6 +94,7 @@ export default async function handler(
             fullName: appointmentData.fullName,
             phone: appointmentData.phone,
             email: appointmentData.email,
+            address: appointmentData.address,
             serviceType: appointmentData.serviceType,
             date: appointmentData.date,
             timeSlot: appointmentData.timeSlot,
