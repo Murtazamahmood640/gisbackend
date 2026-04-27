@@ -10,8 +10,8 @@ async function testEmail() {
     console.log('Using SMTP User:', process.env.STACKMAIL_USER);
     
     await sendEmail({
-      to: process.env.ADMIN_EMAIL || 'info@vornoxlab.com',
-      subject: 'Test Email from Luxe Detail Booker',
+      to: process.env.ADMIN_EMAIL || 'support@globalintegratedsupport.com',
+      subject: 'Test Email from Global Integrated Support',
       html: '<h1>Success!</h1><p>This is a test email to verify that SMTP settings are correct.</p>',
     });
     

@@ -34,14 +34,14 @@ export default async function handler(
       try {
         await sendEmail({
           to: contactData.email,
-          subject: 'Thank you for contacting Luxe Detail Booker',
+          subject: 'Thank you for contacting Global Integrated Support',
           html: getContactAcknowledgmentEmail({
             fullName: contactData.fullName,
           }),
         });
 
         await sendEmail({
-          to: process.env.ADMIN_EMAIL || 'info@vornoxlab.com',
+          to: process.env.ADMIN_EMAIL || 'support@globalintegratedsupport.com',
           subject: `New Contact Form Submission - ${contactData.subject}`,
           html: `
             <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
